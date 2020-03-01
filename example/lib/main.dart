@@ -60,7 +60,6 @@ class _MyAppState extends State<MyApp> {
                     'AnnualTaskColorItem',
                     AnnualTaskView(
                       taskItemsWithColor,
-                      AnnualTaskItemHelper.colorItemList,
                     ),
                   ),
 
