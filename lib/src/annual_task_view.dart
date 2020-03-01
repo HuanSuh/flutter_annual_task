@@ -54,6 +54,12 @@ class _AnnualTaskViewState extends State<AnnualTaskView> {
       StreamController();
 
   @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () => _buildListToMap());
+  }
+
+  @override
   void didUpdateWidget(AnnualTaskView oldWidget) {
     super.didUpdateWidget(oldWidget);
     _buildListToMap();
