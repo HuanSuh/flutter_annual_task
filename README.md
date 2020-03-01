@@ -1,10 +1,10 @@
 # flutter_annual_task
 
 ## flutter_annual_task
-Flutter package for displaying grid view of daily task like **Github Distribution**.
+Flutter package for displaying grid view of daily task like **Github-Contributions**.
 
 **Example**
-![example](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example.png)
+![example](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example.png?raw=true)
 
 ## Usage
 
@@ -21,7 +21,7 @@ AnnualTaskView(
 Add to pubspec.yaml:
 ```xml
 dependencies:
-  flutter_annual_task: <version>
+  flutter_annual_task: ^0.1.3
 ```
 Then import it to your project:
 ```dart
@@ -92,7 +92,7 @@ Specify cellShape with `AnnualTaskCellShape` with `AnnualTaskCellShape.ROUNDED_S
 
 **Square**
 
-| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_cellshape_square.png) |
+| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_cellshape_square.png?raw=true) |
 | :---: |
 | square |
 ```dart
@@ -103,7 +103,7 @@ AnnualTaskView(
 ```
 **Circle**
 
-| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_cellshape_circle.png) |
+| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_cellshape_circle.png?raw=true) |
 | :---: |
 | circle |
 
@@ -116,7 +116,7 @@ AnnualTaskView(
 
 **AnnualTaskColorItem**
 
-| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_cellshape_coloritem.png) |
+| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_cellshape_coloritem.png?raw=true) |
 | :---: |
 | circle |
 
@@ -136,13 +136,13 @@ AnnualTaskView(
 )
 ```
 
-| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_label_without.png) |
+| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_label_without.png?raw=true) |
 | :---: |
 | without labels |
 
 **Custom label**
 
-| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_label_custom.png) |
+| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_label_custom.png?raw=true) |
 | :---: |
 | custom labels |
 ```dart
@@ -161,7 +161,7 @@ The type of `weekDayLabels` and `monthLabels` is `List<String>`.
 
 **Styled label**
 
-| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_label_style.png) |
+| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_label_style.png?raw=true) |
 | :---: |
 | Styled label |
 ```dart
