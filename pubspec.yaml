@@ -1,6 +1,6 @@
 name: flutter_annual_task
-description: A new Flutter package.
-version: 0.1.0
+description: Flutter package for displaying grid view of daily task like Github-Distribution.
+version: 0.1.1
 homepage: https://github.com/HuanSuh/flutter_annual_task
 
 environment:

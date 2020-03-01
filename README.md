@@ -4,7 +4,7 @@
 Flutter package for displaying grid view of daily task like **Github Distribution**.
 
 **Example**
-![example](./example/assets/example.png)
+![example](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example.png)
 
 ## Usage
 
@@ -92,7 +92,7 @@ Specify cellShape with `AnnualTaskCellShape` with `AnnualTaskCellShape.ROUNDED_S
 
 **Square**
 
-| ![Image](./example/assets/example_cellshape_square.png) |
+| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_cellshape_square.png) |
 | :---: |
 | square |
 ```dart
@@ -103,7 +103,7 @@ AnnualTaskView(
 ```
 **Circle**
 
-| ![Image](./example/assets/example_cellshape_circle.png) |
+| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_cellshape_circle.png) |
 | :---: |
 | circle |
 
@@ -116,7 +116,7 @@ AnnualTaskView(
 
 **AnnualTaskColorItem**
 
-| ![Image](./example/assets/example_cellshape_coloritem.png) |
+| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_cellshape_coloritem.png) |
 | :---: |
 | circle |
 
@@ -136,13 +136,13 @@ AnnualTaskView(
 )
 ```
 
-| ![Image](./example/assets/example_label_without.png) |
+| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_label_without.png) |
 | :---: |
 | without labels |
 
 **Custom label**
 
-| ![Image](./example/assets/example_label_custom.png) |
+| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_label_custom.png) |
 | :---: |
 | custom labels |
 ```dart
@@ -161,7 +161,7 @@ The type of `weekDayLabels` and `monthLabels` is `List<String>`.
 
 **Styled label**
 
-| ![Image](./example/assets/example_label_style.png) |
+| ![Image](https://github.com/HuanSuh/flutter_annual_task/blob/master/example/assets/example_label_style.png) |
 | :---: |
 | Styled label |
 ```dart
