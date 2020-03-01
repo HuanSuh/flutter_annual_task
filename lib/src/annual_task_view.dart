@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import './annual_task_item.dart';
 
-enum AnnualTaskCellShape { SQUARE, CIRCLE, ROUNDED_CIRCLE }
+enum AnnualTaskCellShape { SQUARE, CIRCLE, ROUNDED_SQUARE }
 
 class AnnualTaskView extends StatefulWidget {
   final List<AnnualTaskItem> items;
   final Color activateColor;
   final Color emptyColor;
-  final DateTime initialDate;
+  final int year;
 
   final bool showWeekDayLabel;
   final List<String> weekDayLabels;
@@ -22,7 +22,7 @@ class AnnualTaskView extends StatefulWidget {
 
   AnnualTaskView(
     this.items, {
-    DateTime initialDate,
+    int year,
     this.activateColor,
     this.emptyColor,
     this.cellShape,
@@ -36,7 +36,7 @@ class AnnualTaskView extends StatefulWidget {
             (weekDayLabels == null || weekDayLabels.length == 7)),
         assert(showMonthLabel == false ||
             (monthLabels == null || monthLabels.length == 12)),
-        this.initialDate = DateTime((initialDate ?? DateTime.now()).year, 1, 1),
+        this.year = year ?? DateTime.now().year,
         this.weekDayLabels =
             (weekDayLabels?.length ?? 0) == 7 ? weekDayLabels : _WEEKDAY_LABELS,
         this.monthLabels =
@@ -84,7 +84,7 @@ class _AnnualTaskViewState extends State<AnnualTaskView> {
               opacity: opacity,
               duration: Duration(milliseconds: opacity == 1.0 ? 500 : 0),
               child: _AnnualTaskGrid(
-                widget.initialDate,
+                widget.year,
                 snapshot.data,
                 widget.activateColor ?? Theme.of(context).primaryColor,
                 widget.emptyColor,
@@ -165,7 +165,7 @@ class _AnnualTaskGrid extends StatelessWidget {
   final double contentsWidth;
 
   _AnnualTaskGrid(
-    this.firstDate,
+    int year,
     this.resultMap,
     this.activateColor,
     Color emptyColor,
@@ -176,9 +176,10 @@ class _AnnualTaskGrid extends StatelessWidget {
     AnnualTaskCellShape cellShape,
     TextStyle labelStyle,
     this.contentsWidth,
-  )   : firstDay = DateTime(firstDate.year, 1, 1).weekday % 7,
+  )   : firstDate = DateTime(year, 1, 1),
+        firstDay = DateTime(year, 1, 1).weekday % 7,
         this.emptyColor = emptyColor ?? const Color(0xFFD0D0D0),
-        this.cellShape = cellShape ?? AnnualTaskCellShape.ROUNDED_CIRCLE,
+        this.cellShape = cellShape ?? AnnualTaskCellShape.ROUNDED_SQUARE,
         this.labelStyle = labelStyle ?? _LABEL_STYLE;
 
   @override

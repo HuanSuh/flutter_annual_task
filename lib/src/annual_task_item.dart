@@ -1,10 +1,13 @@
 import 'dart:ui';
 
 class AnnualTaskItem {
-  final DateTime date;
+  final DateTime _date;
   final double proceeding;
+  DateTime get date => _date;
 
-  AnnualTaskItem(this.date, this.proceeding);
+  AnnualTaskItem(DateTime date, [this.proceeding = 1.0])
+      : this._date =
+            date != null ? DateTime(date.year, date.month, date.day) : null;
 
   int get alpha => ((255.0 - 80.0) * proceeding).toInt();
   Color fillColor(Color activateColor) {

@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
                   _buildExample(
                     'square',
                     AnnualTaskView(
-                      taskItem,
+                      taskItem, // List<AnnualTaskItem>
                       activateColor: Colors.red,
                       cellShape: AnnualTaskCellShape.SQUARE,
                     ),
@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
                   _buildExample(
                     'circle',
                     AnnualTaskView(
-                      taskItem,
+                      taskItem, // List<AnnualTaskItem>
                       activateColor: Colors.red,
                       emptyColor: Colors.grey.withAlpha(40),
                       cellShape: AnnualTaskCellShape.CIRCLE,
@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
                   _buildExample(
                     'without labels',
                     AnnualTaskView(
-                      taskItem,
+                      taskItem, // List<AnnualTaskItem>
                       showMonthLabel: false,
                       showWeekDayLabel: false,
                     ),
@@ -78,7 +78,7 @@ class _MyAppState extends State<MyApp> {
                   _buildExample(
                     'custom labels',
                     AnnualTaskView(
-                      taskItem,
+                      taskItem, // List<AnnualTaskItem>
                       weekDayLabels: CUSTOM_WEEKDAY_LABEL,
                       monthLabels: CUSTOM_MONTH_LABEL,
                     ),
@@ -86,7 +86,7 @@ class _MyAppState extends State<MyApp> {
                   _buildExample(
                     'labels style',
                     AnnualTaskView(
-                      taskItem,
+                      taskItem, // List<AnnualTaskItem>
                       weekDayLabels: CUSTOM_WEEKDAY_LABEL,
                       monthLabels: CUSTOM_MONTH_LABEL,
                       labelStyle: TextStyle(
