@@ -6,12 +6,13 @@ Flutter package for displaying grid view of daily task like **Github Distributio
 **Example**
 ![example](./example/assets/example.png)
 
-##Usage
+## Usage
+
 Make sure to check out [example project](https://github.com/HuanSuh/flutter_annual_task/tree/master/example).
 
 ```dart
 AnnualTaskView(
-	taskItem	// List<AnnualTaskItem>
+  taskItem	// List<AnnualTaskItem>
 ),
 ```
 
@@ -20,7 +21,7 @@ AnnualTaskView(
 Add to pubspec.yaml:
 ```xml
 dependencies:
-	flutter_annual_task: <version>
+  flutter_annual_task: <version>
 ```
 Then import it to your project:
 ```dart
@@ -29,12 +30,14 @@ import 'package:flutter_annual_task/flutter_annual_task.dart';
 And finally add `AnnualTaskView` widget in your project.
 ```dart
 AnnualTaskView(
-	taskItem	// List<AnnualTaskItem>
+  taskItem	// List<AnnualTaskItem>
 ),
 ```
 - - -
-###AnnualTaskItem
+
+### AnnualTaskItem
 **AnnualTaskItem**
+
 ```dart
 class AnnualTaskItem {
   final DateTime date;
@@ -48,6 +51,7 @@ The value of `proceeding` affects the opacity on the each cell of daily task.<br
 </br>
 
 **AnnualTaskColorItem**
+
 If you want to specify color for each daily task, you can use `AnnualTaskColorItem`.
 ```dart
 class AnnualTaskColorItem extends AnnualTaskItem {
@@ -66,25 +70,25 @@ You should generate **list of AnnualTaskItem**(`List<AnnualTaskItem>`) to use th
 ```dart
 //AnnualTaskItem
 <user_item_list>.map(
-          (item) => AnnualTaskItem(
-            DateTime.now(),
-            0.5,
-          ),
-        )
-        .toList();
-        
+  (item) => AnnualTaskItem(
+    item.date,
+    0.5,
+  ),
+)
+.toList();
+
 //AnnualTaskColorItem
 <user_item_list>.map(
-          (item) => AnnualTaskColorItem(
-            DateTime.now(),
-            color: <color_for_each_item>
-          ),
-        )
-        .toList();
+  (item) => AnnualTaskColorItem(
+    item.date,
+    color: <color_for_each_item>
+  ),
+)
+.toList();
 ```
-##Examples
-###Cell Shape
-Specify cellShape with `AnnualTaskCellShape` with `AnnualTaskCellShape.ROUNDED_CIRCLE`(default), `AnnualTaskCellShape.SQUARE` or `AnnualTaskCellShape.CIRCLE`.
+## Examples
+### Cell Shape
+Specify cellShape with `AnnualTaskCellShape` with `AnnualTaskCellShape.ROUNDED_SQUARE`(default), `AnnualTaskCellShape.SQUARE` or `AnnualTaskCellShape.CIRCLE`.
 
 **Square**
 
@@ -93,8 +97,8 @@ Specify cellShape with `AnnualTaskCellShape` with `AnnualTaskCellShape.ROUNDED_C
 | square |
 ```dart
 AnnualTaskView(
-    taskItem, // List<AnnualTaskItem>
-	cellShape: AnnualTaskCellShape.SQUARE,
+  taskItem, // List<AnnualTaskItem>
+  cellShape: AnnualTaskCellShape.SQUARE,
 )
 ```
 **Circle**
@@ -105,8 +109,8 @@ AnnualTaskView(
 
 ```dart
 AnnualTaskView(
-    taskItem, // List<AnnualTaskItem>
-	cellShape: AnnualTaskCellShape.CIRCLE,
+  taskItem, // List<AnnualTaskItem>
+  cellShape: AnnualTaskCellShape.CIRCLE,
 )
 ```
 
@@ -118,7 +122,7 @@ AnnualTaskView(
 
 ```dart
 AnnualTaskView(
-    taskItem, // List<AnnualTaskColorItem>
+  taskItemWithColor, // List<AnnualTaskColorItem>
 )
 ```
 
@@ -137,6 +141,10 @@ AnnualTaskView(
 | without labels |
 
 **Custom label**
+
+| ![Image](./example/assets/example_label_custom.png) |
+| :---: |
+| custom labels |
 ```dart
 AnnualTaskView(
   taskItem, // List<AnnualTaskItem>
@@ -146,6 +154,37 @@ AnnualTaskView(
 ```
 The type of `weekDayLabels` and `monthLabels` is `List<String>`.
 
-You can also hide the lable of each items with empty String(`''`). However, `weekDayLabels` should be **length of 7** and, `monthLabels` should be **length of 12**.  <br/>- `weekDayLables` starts from Sunday.<br/>- default value of `weekDayLables' is ['S', 'M', 'T', 'W', 'T', 'F', 'S'].
-<br/>- default value of `monthLabels' is `['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']`.
+- `weekDayLables` starts from Sunday.
+- default value of `weekDayLables' is ['S', 'M', 'T', 'W', 'T', 'F', 'S'].
+- default value of `monthLabels' is `['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']`.
+- You can also hide the lable of each items with empty String(`''`). But, `weekDayLabels` should be **length of 7** and, `monthLabels` should be **length of 12**.
 
+**Styled label**
+
+| ![Image](./example/assets/example_label_style.png) |
+| :---: |
+| Styled label |
+```dart
+AnnualTaskView(
+  taskItem, // List<AnnualTaskItem>
+  labelStyle: TextStyle(
+    color: Colors.blueGrey,
+    fontSize: 10,
+    fontWeight: FontWeight.bold,
+  ),	// default label style : TextStyle(fontSize: 8)
+)
+```
+## Props
+
+| props | type | desc |
+| :--- | :--- | :--------------- |
+| items | `List<AnnualTaskItem>` | List of `AnnualTaskItem` |
+| year | `int` | default : `DateTime.now().year` |
+| activateColor | `Color` | default : `Theme.of(context).primaryColor` |
+| emptyColor | `Color` | Color of cell with proceeding `0.0` or the day which `items` doesn't contain. <br/>default : `Color(0xFFD0D0D0)` |
+| showWeekDayLabel | `bool` | Show the lables of week, if true.<br/>default : `true` |
+| cellShape | `AnnualTaskCellShape` | Shape of cell. One of `AnnualTaskCellShape.ROUNDED_SQUARE`, `AnnualTaskCellShape.SQUARE` or `AnnualTaskCellShape.CIRCLE`.<br/>default: `AnnualTaskCellShape.ROUNDED_SQUARE` |
+| showMonthLabel | `bool` | Show the lables of month, if true.<br/>default : `true` |
+| monthLabels | `List<String>` | Lables of month.<br/>default: `['S', 'M', 'T', 'W', 'T', 'F', 'S']` |
+| weekDayLabels | `List<String>` | Lables of week.<br/>default: `['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']` |
+| labelStyle | `TextStyle` | `TextStyle` of lables.<br/>default: `TextStyle(fontSize: 8)` |

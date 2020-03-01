@@ -11,14 +11,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  List<AnnualTaskItem> get taskItemsWithColor =>
+      AnnualTaskItemHelper.colorItemList;
 
   @override
   Widget build(BuildContext context) {
-    List<AnnualTaskItem> taskItem = AnnualTaskItemHelper.generateAnnualTask();
+    List<AnnualTaskItem> taskItems = AnnualTaskItemHelper.generateAnnualTask();
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -37,14 +35,14 @@ class _MyAppState extends State<MyApp> {
                   _buildSectionTitle('Default'),
                   _buildExample(
                     '',
-                    AnnualTaskView(taskItem),
+                    AnnualTaskView(taskItems),
                   ),
                   // Examples for cellShape
                   _buildSectionTitle('Cell shape'),
                   _buildExample(
                     'square',
                     AnnualTaskView(
-                      taskItem, // List<AnnualTaskItem>
+                      taskItems, // List<AnnualTaskItem>
                       activateColor: Colors.red,
                       cellShape: AnnualTaskCellShape.SQUARE,
                     ),
@@ -52,7 +50,7 @@ class _MyAppState extends State<MyApp> {
                   _buildExample(
                     'circle',
                     AnnualTaskView(
-                      taskItem, // List<AnnualTaskItem>
+                      taskItems, // List<AnnualTaskItem>
                       activateColor: Colors.red,
                       emptyColor: Colors.grey.withAlpha(40),
                       cellShape: AnnualTaskCellShape.CIRCLE,
@@ -61,6 +59,7 @@ class _MyAppState extends State<MyApp> {
                   _buildExample(
                     'AnnualTaskColorItem',
                     AnnualTaskView(
+                      taskItemsWithColor,
                       AnnualTaskItemHelper.colorItemList,
                     ),
                   ),
@@ -70,7 +69,7 @@ class _MyAppState extends State<MyApp> {
                   _buildExample(
                     'without labels',
                     AnnualTaskView(
-                      taskItem, // List<AnnualTaskItem>
+                      taskItems, // List<AnnualTaskItem>
                       showMonthLabel: false,
                       showWeekDayLabel: false,
                     ),
@@ -78,7 +77,7 @@ class _MyAppState extends State<MyApp> {
                   _buildExample(
                     'custom labels',
                     AnnualTaskView(
-                      taskItem, // List<AnnualTaskItem>
+                      taskItems, // List<AnnualTaskItem>
                       weekDayLabels: CUSTOM_WEEKDAY_LABEL,
                       monthLabels: CUSTOM_MONTH_LABEL,
                     ),
@@ -86,7 +85,7 @@ class _MyAppState extends State<MyApp> {
                   _buildExample(
                     'labels style',
                     AnnualTaskView(
-                      taskItem, // List<AnnualTaskItem>
+                      taskItems, // List<AnnualTaskItem>
                       weekDayLabels: CUSTOM_WEEKDAY_LABEL,
                       monthLabels: CUSTOM_MONTH_LABEL,
                       labelStyle: TextStyle(
