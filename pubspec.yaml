@@ -1,7 +1,7 @@
 name: flutter_annual_task
 description: A new Flutter package.
-version: 0.0.1
-homepage: http://
+version: 0.1.0
+homepage: https://github.com/HuanSuh/flutter_annual_task
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
