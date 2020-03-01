@@ -154,10 +154,10 @@ AnnualTaskView(
 ```
 The type of `weekDayLabels` and `monthLabels` is `List<String>`.
 
-- `weekDayLables` starts from Sunday.
-- default value of `weekDayLables' is ['S', 'M', 'T', 'W', 'T', 'F', 'S'].
+- `weekDayLabels` starts from Sunday.
+- default value of `weekDayLabels' is ['S', 'M', 'T', 'W', 'T', 'F', 'S'].
 - default value of `monthLabels' is `['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']`.
-- You can also hide the lable of each items with empty String(`''`). But, `weekDayLabels` should be **length of 7** and, `monthLabels` should be **length of 12**.
+- You can also hide the label of each items with empty String(`''`). But, `weekDayLabels` should be **length of 7** and, `monthLabels` should be **length of 12**.
 
 **Styled label**
 
@@ -182,9 +182,9 @@ AnnualTaskView(
 | year | `int` | default : `DateTime.now().year` |
 | activateColor | `Color` | default : `Theme.of(context).primaryColor` |
 | emptyColor | `Color` | Color of cell with proceeding `0.0` or the day which `items` doesn't contain. <br/>default : `Color(0xFFD0D0D0)` |
-| showWeekDayLabel | `bool` | Show the lables of week, if true.<br/>default : `true` |
+| showWeekDayLabel | `bool` | Show the labels of week, if true.<br/>default : `true` |
 | cellShape | `AnnualTaskCellShape` | Shape of cell. One of `AnnualTaskCellShape.ROUNDED_SQUARE`, `AnnualTaskCellShape.SQUARE` or `AnnualTaskCellShape.CIRCLE`.<br/>default: `AnnualTaskCellShape.ROUNDED_SQUARE` |
-| showMonthLabel | `bool` | Show the lables of month, if true.<br/>default : `true` |
-| monthLabels | `List<String>` | Lables of month.<br/>default: `['S', 'M', 'T', 'W', 'T', 'F', 'S']` |
-| weekDayLabels | `List<String>` | Lables of week.<br/>default: `['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']` |
-| labelStyle | `TextStyle` | `TextStyle` of lables.<br/>default: `TextStyle(fontSize: 8)` |
+| showMonthLabel | `bool` | Show the labels of month, if true.<br/>default : `true` |
+| monthLabels | `List<String>` | Labels of month.<br/>default: `['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']` |
+| weekDayLabels | `List<String>` | Labels of week.<br/>default: `['S', 'M', 'T', 'W', 'T', 'F', 'S']` |
+| labelStyle | `TextStyle` | `TextStyle` of labels.<br/>default: `TextStyle(fontSize: 8)` |
