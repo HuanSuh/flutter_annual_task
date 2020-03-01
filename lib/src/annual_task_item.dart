@@ -9,8 +9,9 @@ class AnnualTaskItem {
       : this._date =
             date != null ? DateTime(date.year, date.month, date.day) : null;
 
-  int get alpha => ((255.0 - 80.0) * proceeding).toInt();
+  int get alpha => ((255.0 - 80.0) * (proceeding ?? 0)).toInt();
   Color fillColor(Color activateColor) {
+    if (alpha <= 0) return null;
     return activateColor?.withAlpha(alpha + 80);
   }
 }
@@ -24,8 +25,8 @@ class AnnualTaskColorItem extends AnnualTaskItem {
     this.color,
   }) : super(date, proceeding);
 
-  int get alpha => ((255.0 - 80.0) * proceeding).toInt();
+  @override
   Color fillColor(Color activateColor) {
-    return (color ?? activateColor)?.withAlpha(alpha + 80);
+    return super.fillColor(color ?? activateColor);
   }
 }
