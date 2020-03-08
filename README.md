@@ -69,7 +69,7 @@ class AnnualTaskColorItem extends AnnualTaskItem {
 You should generate **list of AnnualTaskItem**(`List<AnnualTaskItem>`) to use this package.</br>Below is an example for building  **list of AnnualTaskItem**.
 ```dart
 //AnnualTaskItem
-<user_item_list>.map(
+<your_item_list>.map(
   (item) => AnnualTaskItem(
     item.date,
     0.5,
@@ -78,7 +78,7 @@ You should generate **list of AnnualTaskItem**(`List<AnnualTaskItem>`) to use th
 .toList();
 
 //AnnualTaskColorItem
-<user_item_list>.map(
+<your_item_list>.map(
   (item) => AnnualTaskColorItem(
     item.date,
     color: <color_for_each_item>
