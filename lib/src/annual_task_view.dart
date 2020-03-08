@@ -287,7 +287,7 @@ class _AnnualTaskGrid extends StatelessWidget {
   Widget _buildWeekdayLabel(int weekIdx, {double width}) {
     return Container(
       width: width ?? 0,
-      alignment: Alignment.center,
+      alignment: Alignment.centerRight,
       child: Text(
         weekDayLabels[weekIdx - (showMonthLabel ? 1 : 0)] ?? '',
         style: labelStyle,
