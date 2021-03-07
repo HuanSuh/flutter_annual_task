@@ -11,12 +11,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<AnnualTaskItem> get taskItemsWithColor =>
-      AnnualTaskItemHelper.colorItemList;
-
   @override
   Widget build(BuildContext context) {
     List<AnnualTaskItem> taskItems = AnnualTaskItemHelper.generateAnnualTask();
+    List<AnnualTaskItem> taskItemsWithColor =
+        AnnualTaskItemHelper.generateAnnualTaskColorItem(taskItems);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -35,7 +34,11 @@ class _MyAppState extends State<MyApp> {
                   _buildSectionTitle('Default'),
                   _buildExample(
                     '',
-                    AnnualTaskView(taskItems),
+                    AnnualTaskView(
+                      taskItems,
+                      showMonthLabel: false,
+                      showWeekDayLabel: false,
+                    ),
                   ),
                   // Examples for cellShape
                   _buildSectionTitle('Cell shape'),
@@ -52,7 +55,7 @@ class _MyAppState extends State<MyApp> {
                     AnnualTaskView(
                       taskItems, // List<AnnualTaskItem>
                       activateColor: Colors.red,
-                      emptyColor: Colors.grey.withAlpha(40),
+                      emptyColor: Colors.grey.withAlpha(80),
                       cellShape: AnnualTaskCellShape.CIRCLE,
                     ),
                   ),
@@ -60,6 +63,15 @@ class _MyAppState extends State<MyApp> {
                     'AnnualTaskColorItem',
                     AnnualTaskView(
                       taskItemsWithColor,
+                      weekDayLabels: [
+                        'Sun',
+                        'Mon',
+                        'Tue',
+                        'Wed',
+                        'Thu',
+                        'Fri',
+                        'Sat'
+                      ],
                     ),
                   ),
 
@@ -106,7 +118,7 @@ class _MyAppState extends State<MyApp> {
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Text(title, style: Theme.of(context).textTheme.title),
+      child: Text(title, style: Theme.of(context).textTheme.headline6),
     );
   }
 
@@ -137,35 +149,29 @@ const List<String> CUSTOM_MONTH_LABEL = [
 ];
 
 class AnnualTaskItemHelper {
-  static final List<AnnualTaskColorItem> colorItemList = List();
   static List<AnnualTaskItem> generateAnnualTask({int year, int sampleSize}) {
-    colorItemList.clear();
     var rnd = new Random();
-    year = year ?? DateTime.now().year;
-    sampleSize = sampleSize ?? rnd.nextInt(200);
-    sampleSize = max(40, min(365, sampleSize));
+    sampleSize = sampleSize ?? max(80, min(365, rnd.nextInt(200)));
+    year ??= DateTime.now().year;
     DateTime prevDate = DateTime(year, 1, 1);
     return List.generate(sampleSize, (idx) {
       int maxDiff =
           (365 - prevDate.difference(DateTime(year, 12, 31)).inDays) ~/
               (sampleSize - idx);
       prevDate = prevDate.add(Duration(days: rnd.nextInt(maxDiff) + 1));
-
-      colorItemList.add(
-        AnnualTaskColorItem(
-          prevDate,
-          color: Color.fromARGB(
-            255,
-            rnd.nextInt(180),
-            rnd.nextInt(180),
-            rnd.nextInt(180),
-          ),
-        ),
-      );
-      return AnnualTaskItem(
-        prevDate,
-        rnd.nextDouble(),
-      );
+      return AnnualTaskItem(prevDate, rnd.nextDouble());
     });
+  }
+
+  static List<AnnualTaskColorItem> generateAnnualTaskColorItem(
+      List<AnnualTaskItem> items) {
+    List<Color> colors = [Colors.red, Colors.blue, Colors.orange];
+    return items
+        .map((e) => AnnualTaskColorItem(
+              e.date,
+              proceeding: e.proceeding,
+              color: colors[Random().nextInt(colors.length)],
+            ))
+        .toList();
   }
 }

@@ -1,3 +1,6 @@
+## [0.2.0] - Mar 7, 2021
+* null-safety
+
 ## [0.1.4] - Mar 8, 2020
 * minor bug fix
    * Set week label align to Alignment.centerRight.

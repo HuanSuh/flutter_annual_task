@@ -7,29 +7,29 @@ enum AnnualTaskCellShape { SQUARE, CIRCLE, ROUNDED_SQUARE }
 
 class AnnualTaskView extends StatefulWidget {
   final List<AnnualTaskItem> items;
-  final Color activateColor;
-  final Color emptyColor;
+  final Color? activateColor;
+  final Color? emptyColor;
   final int year;
 
   final bool showWeekDayLabel;
-  final List<String> weekDayLabels;
+  final List<String>? weekDayLabels;
   final bool showMonthLabel;
-  final List<String> monthLabels;
-  final AnnualTaskCellShape cellShape;
+  final List<String>? monthLabels;
+  final AnnualTaskCellShape? cellShape;
 
   final bool swipeEnabled;
-  final TextStyle labelStyle;
+  final TextStyle? labelStyle;
 
   AnnualTaskView(
     this.items, {
-    int year,
+    int? year,
     this.activateColor,
     this.emptyColor,
     this.cellShape,
     this.showWeekDayLabel = true,
     this.showMonthLabel = true,
-    List<String> weekDayLabels,
-    List<String> monthLabels,
+    List<String>? weekDayLabels,
+    List<String>? monthLabels,
     this.labelStyle,
     this.swipeEnabled = true,
   })  : assert(showWeekDayLabel == false ||
@@ -47,10 +47,10 @@ class AnnualTaskView extends StatefulWidget {
 }
 
 class _AnnualTaskViewState extends State<AnnualTaskView> {
-  double contentsWidth;
-  bool _refreshing;
+  double? contentsWidth;
+  bool? _refreshing;
 
-  final StreamController<Map<DateTime, AnnualTaskItem>> _streamController =
+  final StreamController<Map<DateTime, AnnualTaskItem>?> _streamController =
       StreamController();
 
   @override
@@ -77,7 +77,7 @@ class _AnnualTaskViewState extends State<AnnualTaskView> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         _layoutManagerView(),
-        StreamBuilder<Map<DateTime, AnnualTaskItem>>(
+        StreamBuilder<Map<DateTime, AnnualTaskItem>?>(
           stream: _streamController.stream,
           builder: (context, snapshot) {
             double opacity = 1.0;
@@ -113,7 +113,7 @@ class _AnnualTaskViewState extends State<AnnualTaskView> {
     Map<DateTime, AnnualTaskItem> resultMap = Map();
     _refreshing = true;
     _streamController.add(null);
-    widget.items?.forEach((item) {
+    widget.items.forEach((item) {
       resultMap[item.date] = item;
     });
     return Future.delayed(Duration.zero, () {
@@ -133,7 +133,7 @@ class _AnnualTaskViewState extends State<AnnualTaskView> {
               ? Column(
                   children: List.generate(7, (idx) {
                   return Text(
-                    widget.weekDayLabels[idx] ?? '',
+                    widget.weekDayLabels?.elementAt(idx) ?? '',
                     style: widget.labelStyle ?? _LABEL_STYLE,
                   );
                 }))
@@ -155,36 +155,35 @@ class _AnnualTaskViewState extends State<AnnualTaskView> {
 
 class _AnnualTaskGrid extends StatelessWidget {
   final DateTime firstDate;
-  final Map<DateTime, AnnualTaskItem> resultMap;
+  final Map<DateTime, AnnualTaskItem>? resultMap;
   final int firstDay;
 
-  final Color activateColor;
-  final Color emptyColor;
+  final Color? activateColor;
+  final Color? emptyColor;
 
   final bool showWeekDayLabel;
-  final List<String> weekDayLabels;
+  final List<String>? weekDayLabels;
   final bool showMonthLabel;
-  final List<String> monthLabels;
+  final List<String>? monthLabels;
   final AnnualTaskCellShape cellShape;
   final TextStyle labelStyle;
 
-  final double contentsWidth;
+  final double? contentsWidth;
 
   _AnnualTaskGrid(
     int year,
     this.resultMap,
     this.activateColor,
-    Color emptyColor,
+    this.emptyColor,
     this.showWeekDayLabel,
     this.showMonthLabel,
     this.weekDayLabels,
     this.monthLabels,
-    AnnualTaskCellShape cellShape,
-    TextStyle labelStyle,
+    AnnualTaskCellShape? cellShape,
+    TextStyle? labelStyle,
     this.contentsWidth,
   )   : firstDate = DateTime(year, 1, 1),
         firstDay = DateTime(year, 1, 1).weekday % 7,
-        this.emptyColor = emptyColor ?? const Color(0xFFD0D0D0),
         this.cellShape = cellShape ?? AnnualTaskCellShape.ROUNDED_SQUARE,
         this.labelStyle = labelStyle ?? _LABEL_STYLE;
 
@@ -214,7 +213,7 @@ class _AnnualTaskGrid extends StatelessWidget {
                       return _buildWeekdayLabel(days,
                           width: layout.maxWidth - maxWidth);
                     }
-                    AnnualTaskItem result = _getResult(weeks, days);
+                    AnnualTaskItem? result = _getResult(weeks, days);
                     return ClipRRect(
                       borderRadius: BorderRadius.circular(
                         cellShape == AnnualTaskCellShape.SQUARE
@@ -226,8 +225,9 @@ class _AnnualTaskGrid extends StatelessWidget {
                       child: Container(
                         width: cellSize,
                         height: cellSize,
-                        color: result?.fillColor(activateColor) ??
-                            (emptyColor ?? Colors.grey.withAlpha(50)),
+                        color: result?.fillColor(activateColor ??
+                                Theme.of(context).accentColor) ??
+                            (emptyColor ?? Theme.of(context).disabledColor),
                       ),
                     );
                   }),
@@ -240,19 +240,19 @@ class _AnnualTaskGrid extends StatelessWidget {
     );
   }
 
-  AnnualTaskItem _getResult(int weeksIdx, int daysIdx) {
+  AnnualTaskItem? _getResult(int weeksIdx, int daysIdx) {
     if (resultMap == null) return null;
     if (showWeekDayLabel) weeksIdx--;
     if (showMonthLabel) daysIdx--;
     int days = weeksIdx * 7 + daysIdx - firstDay;
     DateTime date = firstDate.add(Duration(days: days));
-    return resultMap[date];
+    return resultMap![date];
   }
 
   int get _colCnt => showWeekDayLabel == true ? 54 : 53;
   int get _rowCnt => showMonthLabel == true ? 8 : 7;
 
-  Widget _buildMonthLabelRow(double cellSize, {double paddingLeft}) {
+  Widget _buildMonthLabelRow(double cellSize, {double? paddingLeft}) {
     return Padding(
       padding: EdgeInsets.only(left: paddingLeft ?? 0),
       child: Row(
@@ -274,7 +274,7 @@ class _AnnualTaskGrid extends StatelessWidget {
           Container(
             constraints: BoxConstraints(minWidth: cellSize * 1.5),
             child: Text(
-              monthLabels[idx] ?? '',
+              monthLabels?.elementAt(idx) ?? '',
               style: labelStyle,
               textAlign: TextAlign.center,
             ),
@@ -284,12 +284,12 @@ class _AnnualTaskGrid extends StatelessWidget {
     );
   }
 
-  Widget _buildWeekdayLabel(int weekIdx, {double width}) {
+  Widget _buildWeekdayLabel(int weekIdx, {double? width}) {
     return Container(
       width: width ?? 0,
       alignment: Alignment.centerRight,
       child: Text(
-        weekDayLabels[weekIdx - (showMonthLabel ? 1 : 0)] ?? '',
+        weekDayLabels?.elementAt(weekIdx - (showMonthLabel ? 1 : 0)) ?? '',
         style: labelStyle,
       ),
     );
